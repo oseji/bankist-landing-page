@@ -73,3 +73,29 @@ tabs.addEventListener("click", function (e) {
   //add the active content class to the corresponding tab
   activeTab.classList.add("operations__content--active");
 });
+
+//MENU FADE ANIMATION
+const nav = document.querySelector(".nav");
+
+const navLinkHover = function (e, opacity) {
+  if (e.target.classList.contains("nav__link")) {
+    //find origin of the event
+    const link = e.target;
+
+    //find the navLink siblings in the nav
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+
+    const logo = link.closest(".nav").querySelector("img");
+
+    siblings.forEach((el) => {
+      if (el !== link) {
+        //change the opacity of the navLinks that are not the immediate link being hovered on
+        el.style.opacity = opacity;
+      }
+    });
+    logo.style.opacity = opacity;
+  }
+};
+
+nav.addEventListener("mouseover", (e) => navLinkHover(e, 0.5));
+nav.addEventListener("mouseout", (e) => navLinkHover(e, 1));
